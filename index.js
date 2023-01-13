@@ -44,14 +44,14 @@ app.post("/product", (req, res) => {
 
 //ROUTE PATCH
 app.patch("/product", (req, res) => {
-  const getId = parseInt(req.query.id);
-  const price = parseInt(req.body.price);
-  const newName = req.body.name ? req.body.name.toString() : undefined;
-  //   console.log(getBody);
+  const getId = req.query.id ? parseInt(req.query.id) : null;
+  const price = req.body.price ? parseInt(req.body.price) : null;
+  const newName = req.body.name ? req.body.name.toString() : null;
 
   product.filter((item) => {
     if (item.id === getId) {
-      getId ? (item.price = price) : item.price;
+      getId ? (item.id = getId) : item.id;
+      price ? (item.price = price) : item.price;
       newName ? (item.name = newName) : item.name;
     }
   });
